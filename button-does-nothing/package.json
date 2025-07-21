@@ -1,0 +1,25 @@
+{
+  "name": "button-does-nothing",
+  "version": "1.0.0",
+  "description": "A Vite + React + Tailwind CSS web game called 'Button Does Nothing'.",
+  "main": "src/main.jsx",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "tailwindcss": "^2.2.19",
+    "framer-motion": "^4.1.17"
+  },
+  "devDependencies": {
+    "vite": "^2.6.14",
+    "postcss": "^8.4.6",
+    "autoprefixer": "^10.4.2"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT"
+}

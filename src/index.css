@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  min-height: 100vh;
+  background: #05080d;
+  font-family: 'Courier New', Consolas, monospace;
+  color: #4400ff;
+  overflow: hidden;
+}
+
+/* CRT scanlines */
+.crt-scanlines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0,255,255,0.04) 0px,
+    rgba(0,255,255,0.04) 1px,
+    transparent 2px,
+    transparent 4px
+  );
+  mix-blend-mode: screen;
+}
+
+/* Flicker animation */
+@keyframes crt-flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+}
+.crt-flicker {
+  animation: crt-flicker 0.2s infinite;
+}
+
+/* Glitch text */
+.glitch {
+  position: relative;
+  color: #3700ff;
+  text-shadow:
+    0 0 2px #3700ff,
+    0 0 10px #3700ff,
+    2px 0 2px #3700ff,
+    -2px 0 2px #3700ff;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+}
+.glitch::before {
+  left: 2px;
+  text-shadow: -2px 0 #3700ff;
+  clip-path: inset(0 0 50% 0);
+  animation: glitchTop 1s infinite linear alternate-reverse;
+}
+.glitch::after {
+  left: -2px;
+  text-shadow: 2px 0 #3700ff;
+  clip-path: inset(50% 0 0 0);
+  animation: glitchBot 1.2s infinite linear alternate-reverse;
+}
+@keyframes glitchTop {
+  0% { clip-path: inset(0 0 60% 0); }
+  100% { clip-path: inset(0 0 40% 0); }
+}
+@keyframes glitchBot {
+  0% { clip-path: inset(60% 0 0 0); }
+  100% { clip-path: inset(40% 0 0 0); }
+}
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark;
+  color: #3700ff !important;
+  background-color: #05080d !important;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #3700ff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #3700ff;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: #05080d !important;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #3700ff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #3700ff !important;
+    background-color: #05080d !important;
+  }
+  a:hover {
+    color: #3700ff;
+  }
+  button {
+    background-color: #05080d !important;
+    color: #3700ff !important;
+  }
+}
